@@ -1,31 +1,44 @@
-# Change these first
-owner: upptime # Your GitHub organization or username, where this repository lives
-repo: upptime # The name of this repository
+# Orvel status page — https://github.com/LeBorgneAntoine/orvel-status
+# Monitors run on GitHub Actions (every 5 minutes), incidents are GitHub Issues,
+# the public page is served by GitHub Pages. Independent from the hosting provider.
+owner: LeBorgneAntoine
+repo: orvel-status
 
 sites:
-  - name: Google
-    url: https://www.google.com
-  - name: Wikipedia
-    url: https://en.wikipedia.org
-  - name: Hacker News
-    url: https://news.ycombinator.com
-  - name: Secret Site
-    url: $SECRET_SITE
+  - name: Factur-X API
+    url: https://facturx.orvel.dev/health
+    expectedStatusCodes: [200]
+    # /health always answers 200 so the platform healthcheck never restarts the app for a
+    # counter outage; the monitor reads the JSON status field instead ("ok" vs "degraded").
+    __dangerous__body_down_if_text_missing: '"status":"ok"'
+    maxResponseTime: 10000
+  - name: Factur-X API - OpenAPI
+    url: https://facturx.orvel.dev/openapi.json
+    expectedStatusCodes: [200]
+  - name: Factur-X MCP server discovery
+    url: https://facturx.orvel.dev/.well-known/mcp/server.json
+    expectedStatusCodes: [200]
+    __dangerous__body_down_if_text_missing: "streamable-http"
+  - name: Documentation
+    url: https://facturx.orvel.dev/docs/
+    expectedStatusCodes: [200]
+
+assignees:
+  - LeBorgneAntoine
 
 status-website:
-  # Add your custom domain name, or remove the `cname` line if you don't have a domain
-  # Uncomment the `baseUrl` line if you don't have a custom domain and add your repo name there
-  cname: demo.upptime.js.org
-  # baseUrl: /your-repo-name
-  logoUrl: https://raw.githubusercontent.com/upptime/upptime.js.org/master/static/img/icon.svg
-  name: Upptime
-  introTitle: "**Upptime** is the open-source uptime monitor and status page, powered entirely by GitHub."
-  introMessage: This is a sample status page which uses **real-time** data from our [GitHub repository](https://github.com/upptime/upptime). No server required — just GitHub Actions, Issues, and Pages. [**Get your own for free**](https://github.com/upptime/upptime)
+  baseUrl: /orvel-status
+  logoUrl: https://raw.githubusercontent.com/LeBorgneAntoine/orvel-status/master/assets/orvel-mark.svg
+  name: Orvel status
+  introTitle: "Live status of **Orvel** services: Factur-X API, MCP server and documentation."
+  introMessage: Checks run every 5 minutes from GitHub Actions, outside our hosting provider. Incidents are tracked as [GitHub issues](https://github.com/LeBorgneAntoine/orvel-status/issues?q=is%3Aissue+label%3Astatus) and closed automatically when the service recovers. Questions - [support@orvel.dev](mailto:support@orvel.dev).
   navbar:
     - title: Status
       href: /
+    - title: Factur-X API docs
+      href: https://facturx.orvel.dev/docs/
+    - title: Conformity
+      href: https://facturx.orvel.dev/docs/conformity/
     - title: GitHub
       href: https://github.com/$OWNER/$REPO
-
-# Upptime also supports notifications, assigning issues, and more
-# See https://upptime.js.org/docs/configuration
+  theme: light
