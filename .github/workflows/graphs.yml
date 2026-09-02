@@ -44,3 +44,4 @@ jobs:
           command: "graphs"
         env:
           GH_PAT: ${{ secrets.GH_PAT || github.token }}
+# Orvel: copied from upptime/upptime master (Setup CI cannot write workflows with the default token)
