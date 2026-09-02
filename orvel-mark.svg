@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Orvel">
+  <!-- Orvel mark: open ring (two arcs) with an accent node in the gap. Stroke 6, round caps. -->
+  <g fill="none" stroke="#0F172A" stroke-width="6" stroke-linecap="round">
+    <path d="M21.00 12.95 A22 22 0 0 0 26.31 53.25"/>
+    <path d="M37.69 53.25 A22 22 0 0 0 43.00 12.95"/>
+  </g>
+  <circle cx="32" cy="10" r="4" fill="#4F6BFF"/>
+</svg>
