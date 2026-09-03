@@ -22,6 +22,10 @@ sites:
   - name: Documentation
     url: https://facturx.orvel.dev/docs/
     expectedStatusCodes: [200]
+  - name: Orvel studio
+    url: https://orvel.dev/
+    expectedStatusCodes: [200]
+    maxResponseTime: 10000
 
 assignees:
   - LeBorgneAntoine
@@ -30,11 +34,13 @@ status-website:
   baseUrl: /orvel-status
   logoUrl: https://raw.githubusercontent.com/LeBorgneAntoine/orvel-status/master/assets/orvel-mark.svg
   name: Orvel status
-  introTitle: "Live status of **Orvel** services: Factur-X API, MCP server and documentation."
+  introTitle: "Live status of **Orvel** services: studio site, Factur-X API, MCP server and documentation."
   introMessage: Checks run every 5 minutes from GitHub Actions, outside our hosting provider. Incidents are tracked as [GitHub issues](https://github.com/LeBorgneAntoine/orvel-status/issues?q=is%3Aissue+label%3Astatus) and closed automatically when the service recovers. Questions - [support@orvel.dev](mailto:support@orvel.dev).
   navbar:
     - title: Status
       href: /
+    - title: Orvel
+      href: https://orvel.dev/
     - title: Factur-X API docs
       href: https://facturx.orvel.dev/docs/
     - title: Conformity
